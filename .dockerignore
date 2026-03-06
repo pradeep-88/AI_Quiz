@@ -1,0 +1,24 @@
+# Dependencies
+node_modules
+**/node_modules
+
+# Build outputs (we build inside Docker)
+frontend/dist
+backend/dist
+
+# Git and IDE
+.git
+.gitignore
+.cursor
+*.log
+.DS_Store
+
+# Docs and local config (optional; keep if you want)
+# README.md
+# HOW_TO_RUN.md
+# docker/docker-compose.yml
+
+# Env files (secrets go via Render env vars)
+.env
+.env.*
+!.env.example
