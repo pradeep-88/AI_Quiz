@@ -6,8 +6,11 @@ FROM node:20-alpine AS frontend-builder
 
 WORKDIR /app/frontend
 
+# Avoid OOM on Render free tier during install/build
+ENV NODE_OPTIONS=--max-old-space-size=2048
+
 COPY frontend/package*.json ./
-RUN npm ci
+RUN npm install
 
 COPY frontend/ ./
 # Same-origin when served by this server; no VITE_SERVER_URL needed
@@ -19,7 +22,7 @@ FROM node:20-alpine AS backend-builder
 WORKDIR /app/backend
 
 COPY backend/package*.json ./
-RUN npm ci
+RUN npm install
 
 COPY backend/ ./
 RUN npm run build
@@ -30,7 +33,7 @@ FROM node:20-alpine
 WORKDIR /app
 
 COPY backend/package*.json ./
-RUN npm ci --omit=dev
+RUN npm install --omit=dev
 
 COPY --from=backend-builder /app/backend/dist ./dist
 COPY --from=frontend-builder /app/frontend/dist ./public

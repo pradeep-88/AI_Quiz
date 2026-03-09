@@ -15,7 +15,9 @@ function normalizeAnswerForComparison(value: string): string {
 }
 
 export const initializeSocket = (io: Server) => {
-    connectRedis();
+    connectRedis().catch((err) => {
+        console.error('Redis connection failed (set REDIS_URL on Render):', err?.message || err);
+    });
 
     io.on('connection', (socket: Socket) => {
         console.log('User connected:', socket.id);
