@@ -82,11 +82,6 @@ A production-ready, real-time quiz platform where **AI generates quiz questions 
 ├── docker/
 │   └── docker-compose.yml   # backend, frontend, redis, postgres
 ├── Dockerfile               # Production: frontend + backend single image (e.g. Render)
-├── package.json             # Root workspace (optional)
-├── README.md
-├── HOW_TO_RUN.md
-├── DEPLOY_RENDER.md
-└── CONNECT_FRONTEND_BACKEND.md
 ```
 
 ---
